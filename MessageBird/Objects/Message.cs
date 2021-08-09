@@ -29,9 +29,7 @@ namespace MessageBird.Objects
         [EnumMember(Value = "flash")]
         Flash,
         [EnumMember(Value ="tts")]
-        Tts,
-        [EnumMember(Value ="email")]
-        Email
+        Tts
     };
     public enum DataEncoding
     {
@@ -53,14 +51,14 @@ namespace MessageBird.Objects
         public int? Gateway { get; set; }
         public Hashtable TypeDetails { get; set; }
         public DataEncoding Encoding { get; set; }
-        public MessageClass Class { get; set; }
+        public int Class { get; set; }
         public DateTime? Scheduled { get; set; }
 
         public MessageOptionalArguments()
         {
             Type = MessageType.Sms;
             Encoding = DataEncoding.Plain;
-            Class = MessageClass.Normal;
+            Class = 1;
         }
     }
 
@@ -125,7 +123,7 @@ namespace MessageBird.Objects
         public DataEncoding Encoding { get; set; }
 
         [JsonProperty("mclass")]
-        public MessageClass Class { get; set; }
+        public int Class { get; set; }
 
         [JsonProperty("scheduledDatetime"), JsonConverter(typeof(RFC3339DateTimeConverter))]
         public DateTime? Scheduled { get; set; }
